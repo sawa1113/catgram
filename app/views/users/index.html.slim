@@ -1,0 +1,25 @@
+  
+section.hero.is-success
+  .hero-body
+    .container
+      h1.title
+        |  キャットグラマー一覧 
+section.section
+  .container
+    .columns.is-multiline
+      - @users.each do |user|
+        .column.is-3
+          .card
+            .card-content
+              .card-image
+                figure.image
+                  = link_to user_path(user) do
+                    = attachment_image_tag user, :profile_image, fallback: "no-image.png"
+            .card-content
+              .media
+                .media-content
+                  .title
+                    =link_to user.username, user_path(user)
+              .content
+                |  投稿数：
+                = user.cats.count
