@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :users
   resources :cats
+  resources :cats do
+    resource :favorites, only: [:create, :destroy]
+  end
 end

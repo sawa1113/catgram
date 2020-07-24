@@ -21,6 +21,15 @@ section.section
                 .media-content
                   .title
                     =link_to cat.user.username, user_path(cat.user)
+                .media-left
+                  - if current_user.already_favorited?(cat)
+                    = link_to cat_favorites_path(cat), method: :delete do
+                      i.fas.fa-heart
+                    = cat.favorites.count
+                  - else
+                    = link_to cat_favorites_path(cat), method: :post do
+                      i.far.fa-heart
+                    = cat.favorites.count
               .content
                 time
                   = cat.updated_at.strftime("%Y-%m-%d %H:%M")
