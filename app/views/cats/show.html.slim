@@ -26,6 +26,17 @@ section.section
                     = simple_format @cat.body
               - if @cat.user.id == current_user.id
                 = link_to "編集画面へ", edit_cat_path(@cat), class: "button is-success"
+                .content-content
+                  tr
+                    td
+                      - if current_user.already_favorited?(@cat)
+                        = link_to cat_favorites_path(@cat), method: :delete do
+                          i.fas.fa-heart
+                        = @cat.favorites.count
+                      - else
+                        = link_to cat_favorites_path(@cat), method: :create do
+                          i.far.fa-heart
+                        = @cat.favorites.count
       .column.is-4
         article.panel.is-link
           p.panel-heading
